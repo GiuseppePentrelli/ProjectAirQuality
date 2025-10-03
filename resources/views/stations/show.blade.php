@@ -25,7 +25,9 @@
 
                     <p class="metric-weighted">
                         {{ __('ui.weighted_average_7days') }}:
-                        <strong>{{ $metric['weighted_average'] }}</strong>
+                        <strong>
+                            {{ $metric['weighted_average'] !== null ? number_format($metric['weighted_average'], 2) : 'N/D' }}
+                        </strong>
                     </p>
 
                     {{-- Tabella dati --}}
@@ -47,9 +49,9 @@
                                 @foreach ($metric['data_points'] as $day)
                                     <tr>
                                         <td data-label="{{ __('ui.date') }}">{{ $day['date'] }}</td>
-                                        <td data-label="{{ __('ui.min') }}">{{ $day['min'] }}</td>
-                                        <td data-label="{{ __('ui.average') }}">{{ $day['average'] }}</td>
-                                        <td data-label="{{ __('ui.max') }}">{{ $day['max'] }}</td>
+                                        <td data-label="{{ __('ui.min') }}">{{ number_format($day['min'], 2) }}</td>
+                                        <td data-label="{{ __('ui.average') }}">{{ number_format($day['average'], 2) }}</td>
+                                        <td data-label="{{ __('ui.max') }}">{{ number_format($day['max'], 2) }}</td>
                                         <td data-label="{{ __('ui.sample_size') }}">{{ $day['sample_size'] }}</td>
                                     </tr>
                                 @endforeach
@@ -61,46 +63,44 @@
         @else
             <h2 class="no-data mt-5">{{ __('ui.data_not_available') }}</h2>
 
-                            <section class="metric-card" style="height: 70vh">
-                    <h2 class="metric-title">
-                        N/D
-                        <span class="metric-unit">N/D</span>
-                    </h2>
+            <section class="metric-card" style="height: 70vh">
+                <h2 class="metric-title">
+                    N/D
+                    <span class="metric-unit">N/D</span>
+                </h2>
 
-                    <p class="metric-weighted">
-                        N/D
-                        <strong>N/D</strong>
-                    </p>
+                <p class="metric-weighted">
+                    N/D
+                    <strong>N/D</strong>
+                </p>
 
-                    {{-- Tabella dati --}}
-                    <div class="table-container">
-                        <table class="metric-table">
-                            <caption class="sr-only">
-                                N/D
-                            </caption>
-                            <thead>
-                                                               <tr>
-                                    <th scope="col">{{ __('ui.date') }}</th>
-                                    <th scope="col">{{ __('ui.min') }}</th>
-                                    <th scope="col">{{ __('ui.average') }}</th>
-                                    <th scope="col">{{ __('ui.max') }}</th>
-                                    <th scope="col">{{ __('ui.sample_size') }}</th>
-                                </tr>
-                                <tr>
-                                      <td data-label="{{ __('ui.date') }}">N/D</td>
-                                        <td data-label="{{ __('ui.min') }}">N/D</td>
-                                        <td data-label="{{ __('ui.average') }}">N/D</td>
-                                        <td data-label="{{ __('ui.max') }}">N/D</td>
-                                        <td data-label="{{ __('ui.sample_size') }}">N/D</td>
-                                </tr>
-                                
-                            </thead>
-                            <tbody>
-
-
-                        </table>
-                    </div>
-                </section>
+                {{-- Tabella dati --}}
+                <div class="table-container">
+                    <table class="metric-table">
+                        <caption class="sr-only">
+                            N/D
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">{{ __('ui.date') }}</th>
+                                <th scope="col">{{ __('ui.min') }}</th>
+                                <th scope="col">{{ __('ui.average') }}</th>
+                                <th scope="col">{{ __('ui.max') }}</th>
+                                <th scope="col">{{ __('ui.sample_size') }}</th>
+                            </tr>
+                            <tr>
+                                <td data-label="{{ __('ui.date') }}">N/D</td>
+                                <td data-label="{{ __('ui.min') }}">N/D</td>
+                                <td data-label="{{ __('ui.average') }}">N/D</td>
+                                <td data-label="{{ __('ui.max') }}">N/D</td>
+                                <td data-label="{{ __('ui.sample_size') }}">N/D</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         @endif
     </main>
 </x-layout>

@@ -18,7 +18,7 @@
                                 {{ $station['address'] ?? __('ui.address_not_available') }}<br>
                                 {{ __('ui.site') }}: {{ $station['site'] ?? '-' }}
                             </p>
-                            <a class="details-btn" href="{{ route('stations.show', $station['id']) }}">
+                            <a class="details-btn" href="{{ route('stations.show', str_replace(" " ,"-", strtolower($station['site']))) }}">
                                 {{ __('ui.view_details') }}
                             </a>
                         </div>

@@ -14,8 +14,8 @@
         <div class="col-12 d-flex justify-content-center">
             <nav aria-label="Footer navigation">
                 <ul>
-                    <li><a href="https://www.guidance.studio/">Chi siamo</a></li>
-                    <li><a href="https://www.guidance.studio/#contacts">Contatti</a></li>
+                    <li><a href="#">Chi siamo</a></li>
+                    <li><a href="#">Contatti</a></li>
                     <li><a href="/privacy">Privacy</a></li>
                     <li><a href="https://www.arpa.puglia.it" target="_blank">Arpa.Puglia</a></li>
                 </ul>
@@ -71,12 +71,8 @@
     <!-- Fine pagina -->
     <div class="row text-center endDiv">
         <div class="col-12">
-            <small>&copy; 2025 Air Quality. {{ __('ui.all_rights_reserved') }} | {{ __('ui.powered_by') }}
-                <a class="ms-1" href="https://www.guidance.studio/">
-                    <img class="poweradeBy img-fluid"
-                        src="https://cdn.prod.website-files.com/65df469a57fce2f2e4a5d562/6637a0c78dc2824445bec931_logo%20guidance.png"
-                        alt="Logo Guidance" style="height: 30px;">
-                </a>
+            <small>&copy; 2025 Air Quality | {{ __('ui.all_rights_reserved') }} | {{ __('ui.powered_by') }}
+Pentrelli Giuseppe.
             </small>
         </div>
     </div>

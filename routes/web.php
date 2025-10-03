@@ -12,7 +12,7 @@ Route::post('/lingua/{lang}', [PublicController::class, 'setLenguage'])->name('s
 
 // Rotte frontend
 Route::get('/station', [StationController::class, 'index'])->name('stations.index');
-Route::get('/station/{id}', [StationController::class, 'show'])->name('stations.show');
+Route::get('/station/{site}', [StationController::class, 'show'])->name('stations.show');
 
 
 // 404

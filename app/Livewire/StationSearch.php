@@ -35,6 +35,8 @@ class StationSearch extends Component
         $data = $response->json();
         $this->stations = $data['stations'] ?? [];
 
+
+
         if (!empty($this->stations)) {
             $randomStation = collect($this->stations)->random();
             $this->loadStation($randomStation['id']);

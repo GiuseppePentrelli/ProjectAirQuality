@@ -27,10 +27,38 @@ class StationController extends Controller
         return view('stations.index', compact('stations'));
     }
 
-    public function show($id)
+    public function show($site)
     {
-        $response = Http::get("https://api.zeroc.green/v1/stations/{$id}");
+
+
+        $response_site = Http::get("https://api.zeroc.green/v1/stations/");
+        $data_site = $response_site->json();
+
+        $data_sites = $data_site['stations'];
+
+
+
+        foreach ($data_sites as $station) {
+
+            if (str_replace(" ", "-", strtolower($station['site'])) === $site) {
+
+                $station_id = $station['id'];
+                break;
+            }
+        }
+
+        if (!$station_id) {
+            return view(
+                'stations.error',
+
+            );
+        }
+
+
+        $response = Http::get("https://api.zeroc.green/v1/stations/{$station_id}");
         $data = $response->json();
+
+
 
         // Calcolo media ponderata sugli ultimi 7 giorni
         if (isset($data['metrics'])) {
@@ -42,8 +70,12 @@ class StationController extends Controller
 
                 foreach ($last7 as $day) {
                     if ($day['sample_size'] > 0) {
-                        $sum += $day['average'] * $day['sample_size'];
+                         $averageDay = round($day['average'], 2);
+
+                        $sum += $averageDay * $day['sample_size'];
                         $weightSum += $day['sample_size'];
+
+                          $day['average'] = $averageDay;
                     }
                     //   dd($day);
 
